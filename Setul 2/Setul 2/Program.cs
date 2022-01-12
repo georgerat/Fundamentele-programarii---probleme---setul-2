@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Probleme___setul_2
 {
@@ -24,6 +20,43 @@ namespace Probleme___setul_2
             //P12();
             //P13();
             //P14();
+            //P15();
+        }
+
+        private static void P15()
+        {
+            //O secventa bitonica este o secventa de numere care incepe monoton crescator si continua monoton descrecator.
+            //De ex. 1,2,2,3,5,4,4,3 este o secventa bitonica. Se da o secventa de n numere.Sa se determine daca este bitonica.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int numar, numar_anterior, k = 0;
+            numar_anterior = int.Parse(t[0]);
+            bool ok = true;
+
+            for (int i = 1; i < n; i++)
+            {
+                numar = int.Parse(t[i]);
+                if (numar < numar_anterior)
+                    k = 1;
+                if (k == 1)
+                {
+                    if (numar > numar_anterior)
+                        ok = false;
+                }
+                numar_anterior = numar;
+            }
+            if (k == 1 && ok)
+                Console.WriteLine("Secventa data este o secventa bitonica");
+            else
+                Console.WriteLine("Secventa data nu este o secventa bitonica");
         }
 
         private static void P14()
