@@ -19,6 +19,168 @@ namespace Probleme___setul_2
             //P7();
             //P8();
             //P9();
+            //P10();
+            //P11();
+            //P12();
+            //P13();
+            //P14();
+        }
+
+        private static void P14()
+        {
+            //O <secventa monotona rotita> este o secventa de numere monotona sau poate fi transformata intr-o secventa montona prin rotiri
+            //succesive. Determinati daca o secventa de n numere este o secventa monotona rotita.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int numar, numar_anterior, k = 0, c = 0;
+            numar_anterior = int.Parse(t[0]);
+
+            for (int i = 1; i < n; i++)
+            {
+                numar = int.Parse(t[i]);
+
+                if (numar < numar_anterior)
+                    k++;
+                if (numar > numar_anterior)
+                    c++;
+
+                numar_anterior = numar;
+            }
+            if (k <= 1 || c <= 1)
+                Console.WriteLine("Secventa data este o secventa monotona rotita.");
+            else
+                Console.WriteLine("Secventa data nu este o secventa monotona rotita.");
+        }
+
+        private static void P13()
+        {
+            //O <secventa crescatoare rotita> este o secventa de numere care este in ordine crescatoare sau poate fi transformata intr-o
+            //secventa in ordine crescatoare prin rotiri succesive (rotire cu o pozitie spre stanga = toate elementele se muta cu o pozitie
+            //spre stanga si primul element devine ultimul). Determinati daca o secventa de n numere este o secventa crescatoare rotita.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int numar, numar_anterior, k = 0;
+            numar_anterior = int.Parse(t[0]);
+
+            for (int i = 1; i < n; i++)
+            {
+                numar = int.Parse(t[i]);
+
+                if (numar < numar_anterior)
+                    k++;
+
+                numar_anterior = numar;
+            }
+            if (k <= 1)
+                Console.WriteLine("Secventa data este o secventa crescatoare rotita.");
+            else
+                Console.WriteLine("Secventa data nu este o secventa crescatoare rotita.");
+        }
+
+        private static void P12()
+        {
+            //Cate grupuri de numere consecutive diferite de zero sunt intr-o secventa de n numere. Considerati fiecare astfel de grup ca
+            //fiind un cuvant, zero fiind delimitator de cuvinte. De ex. pentru secventa 1, 2, 0, 3, 4, 5, 0, 0, 6, 7, 0, 0 raspunsul este 3.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int numar, numar_anterior, k = 0;
+            numar_anterior = int.Parse(t[0]);
+            if (numar_anterior != 0)
+                k++;
+
+            for (int i = 1; i < n; i++)
+            {
+                numar = int.Parse(t[i]);
+
+                if (numar != 0 && numar_anterior == 0)
+                {
+                    k++;
+                }
+
+                numar_anterior = numar;
+            }
+            Console.WriteLine($"Sunt {k} grupuri de numere consecutive diferite de zero in secventa data.");
+        }
+
+        private static void P11()
+        {
+            //Se da o secventa de n numere nenule. Se cere sa se caculeze suma inverselor acestor numere.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            double numar, suma = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                numar = double.Parse(t[i]);
+                suma = suma + (1 / numar);
+            }
+            Console.WriteLine($"Suma inverselor numerelor din secventa data este: {suma}.");
+        }
+
+        private static void P10()
+        {
+            //Se da o secventa de n numere. Care este numarul maxim de numere consecutive egale din secventa.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int numar, numar_anterior, lc = 1, lmax = 1;
+            numar_anterior = int.Parse(t[0]);
+
+            for (int i = 1; i < n; i++)
+            {
+                numar = int.Parse(t[i]);
+
+                if (numar == numar_anterior)
+                {
+                    lc++;
+                    if (lc > lmax)
+                        lmax = lc;
+                }
+                else
+                    lc = 1;
+
+                numar_anterior = numar;
+            }
+            Console.WriteLine($"Numarul maxim de numere consecutive egale din secventa este: {lmax}.");
         }
 
         private static void P9()
